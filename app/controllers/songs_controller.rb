@@ -1,6 +1,4 @@
 class SongsController < ApplicationController
-  require 'csv'
-
   def index
     @songs = Song.all
   end
@@ -24,7 +22,7 @@ class SongsController < ApplicationController
   end
 
   def upload
-    SongWorker.perform_async(params["file"].path)
+    SongsWorker.perform_async(params[:file])
 
     redirect_to songs_path
   end
