@@ -34,6 +34,7 @@ class ArtistsController < ApplicationController
       render :edit
     end
   end
+  
 
   def destroy
     @artist = Artist.find(params[:id])
