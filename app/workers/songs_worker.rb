@@ -1,11 +1,10 @@
 class SongsWorker
     require 'csv'
-    include Sidekiq::Worker 
-
+    include Sidekiq::Worker
+  
     def perform(songs_file)
-        CSV.foreach(params[:file], headers: true) do |song|
-            artist = Artist.find_or_create_by(name: song[1])
-            Song.create(title: song[0], artist_id: artist.id)
-        end
+      CSV.foreach(songs_file, headers: true) do |song|
+        Song.create(title: song[0], artist_name: song[1])
+      end
     end
-end
+  end
