@@ -51,7 +51,6 @@ class SongsController < ApplicationController
     @song.destroy
     flash[:notice] = "Song deleted."
     redirect_to songs_path
-  end
 
   private
 
