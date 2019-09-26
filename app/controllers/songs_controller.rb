@@ -5,6 +5,11 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
 
+  def upload
+    SongsWorker.perform_async(params[:file].path)
+    redirect_to songs_path
+  end
+
   def show
     @song = Song.find(params[:id])
   end
@@ -58,5 +63,3 @@ class SongsController < ApplicationController
   def song_params
     params.require(:song).permit(:title, :artist_name)
   end
-end
-
